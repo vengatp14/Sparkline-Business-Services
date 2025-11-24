@@ -23,6 +23,9 @@
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
+
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
@@ -56,12 +59,347 @@
 </script>
 
 <style>
+:root { 
+  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
+  --default-color: #2d2dea; /* Default color used for the majority of the text content across the entire website */
+  --heading-color: #ff7800; /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #036dda; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+}
+
+body {
+  font-family: var(--default-font);
+  color: var(--default-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font);
+  color: var(--heading-color);
+}
+
   /* Mobile-only extra padding for Founder section */
   @media (max-width: 767.98px) {
     #footer {
       padding-bottom: 50px !important;
     }
   }
+
+/* White overlapping rectangle */
+.overlap-box {
+  width: 90%;
+  background: #ffffff;
+  height: 80px;
+  margin: -70px auto 0;       
+  border-top: 6px solid #2d2dea;   
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+  position: absolute; 
+  bottom: 0;          
+  left: 50%;
+  z-index: 50;
+  transform: translateX(-50%);
+  box-shadow: 0px 6px 20px rgba(0,0,0,0.08);
+  
+}
+
+/* Center hero text */
+.hero-section {
+  padding-top: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section h2,
+.hero-section p {
+  text-align: center;
+}
+
+.hero-stats,
+.hero-btns {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+/* Careers */
+.career-faq-item {
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 15px;
+  background: #fff;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.career-faq-item:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+}
+
+.career-faq-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 16px;
+  color: #ff7800;
+}
+
+.career-faq-header span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.career-faq-content {
+  display: none;
+  margin-top: 12px;
+  color: #2d2dea;
+  font-size: 14px;
+}
+
+.career-faq-item.active .career-faq-content {
+  display: block;
+}
+
+.career-faq-item.active .career-faq-icon {
+  transform: rotate(90deg);
+}
+
+.career-faq-icon {
+  font-size: 20px;
+  transition: 0.3s ease;
+}
+  
+/* Whatsapp */
+.whatsapp-float {
+  position: fixed;
+  bottom: 150px;
+  right: 0;
+  transform: translateX(-10px);
+  background-color: #25D366;
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  z-index: 999;
+  box-shadow: 0px 2px 10px rgba(0,0,0,0.3);
+}
+.whatsapp-float:hover {
+  transform: scale(1.05);
+}
+
+.whatsapp-wrapper {
+  position: fixed;
+  bottom: 90px;
+  right: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .whatsapp-wrapper {
+    bottom: 110px; 
+  }
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .whatsapp-wrapper {
+    bottom: 120px; 
+  }
+  .whatsapp-float {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+}
+
+/* services */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  padding: 20px;
+  justify-items: center; 
+  text-align: center;
+}
+
+/* Responsive Grid Fix */
+@media (max-width: 1200px) {
+  .service-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .service-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .service-grid {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 25px;
+  }
+
+  .service-card {
+    width: 260px;
+    height: 260px;
+  }
+}
+
+.service-grid > .service-item:nth-last-child(-n+2) {
+  justify-self: center;
+}
+
+.service-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.service-card {
+  width: 300px;
+  height: 300px;
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: 0.4s ease;
+  background: #f5f5f5;
+}
+
+.service-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.4s ease;
+}
+
+.service-card:hover img {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+.service-card:hover {
+  background: #2d2dea !important;
+}
+
+.service-card .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.4s ease;
+  color: #fff;
+}
+
+.service-card:hover .content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.content h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.content ul {
+  text-align: left;
+  padding-left: 18px;
+}
+
+.service-title {
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.service-list li {
+  list-style: none;
+  position: relative;
+  padding-left: 28px;
+}
+
+.service-list li::before {
+  content: "✨";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 18px;
+  color: #f7c948;
+}
+
+section {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+#clients, #call-to-action, #about {
+  padding-top: 40px !important;
+  padding-bottom: 40px !important;
+}
+
+/* Gallery */
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  height: 220px;
+}
+
+/* Swiper */
+.gallery-item .swiper {
+  width: 100%;
+  height: 100%;   
+  position: relative;
+}
+
+/* Slides image / video */
+.gallery-item .swiper-slide img,
+.gallery-item .swiper-slide video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Arrows */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff !important;
+  background: rgba(0,0,0,0.4);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+}
+
+/* Arrow icons */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 14px;
+}
+
 </style>
 </head>
 
@@ -72,16 +410,19 @@
 
       <a href="index.html" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.webp" alt=""> -->
-        <h1 class="sitename"><span class="text-primary">Sparkline </span>BS</h1>
+        <img src="assets/img/fnl sparkline.png" alt="Sparkline Business Services">
+        <h1 class="sitename"><span style="color:#ff7800;">SPARK<span style="color: #2d2dea;">Line</span></span></h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="#hero" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
+          <li><a href="#call-to-action">About</a></li>
           <li><a href="#Services">Services</a></li>
-          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#clients">Clients</a></li>
+          <li><a href="#careers">Careers</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#reviews">Reviews</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
         <!-- <i class="mobile-nav-toggle d-xl-none bi bi-list"></i> -->
@@ -94,34 +435,77 @@
 
   <main class="main">
 
+<!-- Hero Banner -->
+<div style="
+  position: relative;
+  width: 100%;
+  height: 500px; 
+  overflow: hidden;
+">
+
+  <!-- Background Image -->
+  <img src="assets/img/Full.jpg" 
+       style="
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         filter: brightness(60%);
+       ">
+
+  <!-- Text Content -->
+  <div style="
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 90%;
+    color: white;
+  ">
+    <h1 style="
+      font-size: 48px;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 15px;
+    ">
+      Your All-in-One Partner for Business <br>
+      Excellence.
+    </h1>
+  </div>
+  <!-- Overlapping Box (square) -->
+<div class="overlap-box"></div>
+</div>
+
 <!-- Hero Section -->
 <section id="hero" class="hero section">
   <div class="container" data-aos="fade-up" data-aos-delay="100">
-    <div class="row align-items-center">
-       <div class="col-lg-6 my-4">
+    <div class="row align-items-center justify-content-center">
+       <!--<div class="col-lg-6 my-4">
         <div class="hero-image" data-aos="zoom-out" data-aos-delay="300">
           <img src="assets/img/banner.jpg" alt="Sparkline Business Services" class="img-fluid">
         </div>
-      </div>
-      <div class="col-lg-6">
+      </div>-->
+      <div class="col-lg-6 text-center">
+        
         <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
-          <h2>Comprehensive HR, Legal & Corporate Solutions for Growing Businesses</h2>
+          <h2>End-to-End Business Support for Growth</h2>
           <p>
-            Sparkline Business Services provides tailored HR outsourcing services in India, payroll management, corporate legal advisory and business compliance support. We help organisations scale with reliable talent acquisition, employee background verification and integrated payroll solutions.
+            At <strong style="color: #ff7800;">SparkLine Biz Solutions,</strong> we empower organizations with end-to-end HR, business, and training solutions that strengthen performance, compliance, and growth. Backed by a team of seasoned professionals, we deliver customized strategies tailored to your goals.<br>
+            Our approach is simple — <strong style="color: #ff7800;">understand, strategize, and deliver excellence.</strong> From HR operations and legal compliance to workforce development and corporate events, we are your trusted partner for seamless business support.
           </p>
           <div class="hero-btns">
             <a href="#contact" class="btn btn-primary">Request a Consultation</a>
-            <a href="#services" class="btn btn-outline">Our Services</a>
+            <a href="#Services" class="btn btn-outline">Our Services</a>
           </div>
           <div class="hero-stats">
             <div class="stat-item">
-              <h3><span data-purecounter-start="0" data-purecounter-end="500" data-purecounter-duration="1" class="purecounter"></span>+</h3>
+              <h3><span data-purecounter-start="0" data-purecounter-end="50" data-purecounter-duration="1" class="purecounter"></span>+</h3>
               <p>Clients Served</p>
             </div>
-            <div class="stat-item">
+            <!--<div class="stat-item">
               <h3><span data-purecounter-start="0" data-purecounter-end="120" data-purecounter-duration="1" class="purecounter"></span>+</h3>
               <p>Payrolls Managed Monthly</p>
-            </div>
+            </div>-->
             <div class="stat-item">
               <h3>Trusted</h3>
               <p>Compliance & Advisory</p>
@@ -134,124 +518,13 @@
   </div>
 </section><!-- /Hero Section -->
 
-  <!-- About Section -->
-<section id="about" class="about section light-background">
+<!--Whatsapp icon-->
+<div class="whatsapp-wrapper">
+  <a href="https://wa.me/8148420075" class="whatsapp-float" target="_blank">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+</div>
 
-  <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <h2>About</h2>
-    <p>Professional HR, legal and corporate solutions tailored to your business needs.</p>
-  </div><!-- End Section Title -->
-
-  <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-    <div class="row gy-4 align-items-center justify-content-between">
-
-      <div class="col-xl-5" data-aos="fade-up" data-aos-delay="200">
-        <span class="about-meta">ABOUT SPARKLINE</span>
-        <h2 class="about-title">End-to-End Business Support for Growth</h2>
-        <p class="about-description">
-          Sparkline Business Services is a professional provider of HR, legal and corporate solutions, delivering end-to-end business support for companies of all sizes. Our services include talent acquisition, employee background verification, payroll & statutory compliance, HR advisory & audit, corporate legal services, professional and technical training solutions, corporate event management, and business software development.
-        </p>
-
-        <div class="row feature-list-wrapper">
-          <div class="col-md-6">
-            <ul class="feature-list">
-              <li><i class="bi bi-check-circle-fill"></i> Talent acquisition and recruitment solutions</li>
-              <li><i class="bi bi-check-circle-fill"></i> Employee background verification services</li>
-              <li><i class="bi bi-check-circle-fill"></i> Payroll & statutory compliance management</li>
-            </ul>
-          </div>
-          <div class="col-md-6">
-            <ul class="feature-list">
-              <li><i class="bi bi-check-circle-fill"></i> HR advisory, audit and policy support</li>
-              <li><i class="bi bi-check-circle-fill"></i> Professional & technical training solutions</li>
-              <li><i class="bi bi-check-circle-fill"></i> Business software development & event management</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- <div class="info-wrapper">
-          <div class="row gy-4">
-            <div class="col-lg-7">
-              <div class="contact-info d-flex align-items-center gap-2">
-                <i class="bi bi-telephone-fill"></i>
-                <div>
-                  <p class="contact-label">Call us anytime</p>
-                  <p class="contact-number">+91 74491 71382</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-      </div>
-
-      <div class="col-xl-6" data-aos="fade-up" data-aos-delay="300">
-        <div class="image-wrapper">
-          <div class="images position-relative" data-aos="zoom-out" data-aos-delay="400">
-            <img src="assets/img/banner (1).jpg" alt="Auto Booking Technology" class="img-fluid main-image rounded-4">
-            <!-- <img src="assets/img/driver/auto.jpeg" alt="Community Outreach" class="img-fluid small-image rounded-4"> -->
-          </div>
-            <div class="experience-badge floating">
-            <h3>Trusted <span>Partner</span></h3>
-            <p>Delivering practical HR and legal solutions across India</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-
-</section><!-- /About Section -->
-
-
-<!-- Founder Profile Section -->
-<section class="py-5 bg-light" id="founder">
-  <div class="container">
-    <div class="row align-items-center">
-      <!-- Founder Image -->
-      <div class="col-md-5 text-center mb-4 mb-md-0">
-        <img src="assets/img/photo.jpeg" alt="Ms. Nageswari - Founder of SparkLine Biz Solutions" class="img-fluid rounded-3 shadow-lg" style="max-width: 350px;">
-      </div>
-
-      <!-- Founder Details -->
-      <div class="col-md-7">
-        <h2 class="fw-bold text-primary mb-3">Founder Profile</h2>
-        <h4 class="fw-semibold text-dark mb-3">Ms. Nageswari</h4>
-        <p class="text-muted">
-          With over two decades of rich experience in Human Resources, <strong>Ms. Nageswari</strong> brings unmatched
-          expertise in <strong>Talent Acquisition</strong>, <strong>People Management</strong>, <strong>Strategic HR</strong>, and
-          <strong>Process Design</strong>. Her journey spans across IT, ITES, and Non-IT sectors, where she has played
-          pivotal roles in shaping workforce strategies and driving HR excellence.
-        </p>
-        <p class="text-muted">
-          As the visionary behind <strong>SparkLine Biz Solutions</strong>, she combines her vast corporate knowledge with a
-          passion for empowering organizations and individuals through <strong>consulting</strong>, <strong>audits</strong>,
-          <strong>training</strong>, and <strong>awareness initiatives</strong>.
-        </p>
-
-        <div class="mt-4">
-          <h5 class="fw-bold text-secondary">Mission</h5>
-          <p class="fst-italic text-muted mb-4">
-            “To be the one-stop solution for all business HR needs — with a spark of innovation and a line of trust.”
-          </p>
-
-          <div class="d-flex align-items-center bg-white border rounded-3 p-3 shadow-sm" style="max-width: 420px;">
-            <i class="bi bi-award-fill text-warning fs-3 me-3"></i>
-            <div>
-              <h6 class="mb-0 fw-bold">Awards & Recognition</h6>
-              <small class="text-muted">Best HR Award – Gold Heart Foundation</small>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Founder Profile Section -->
-
- 
 <!-- Call To Action Section -->
 <section id="call-to-action" class="call-to-action section">
 
@@ -266,6 +539,7 @@
 
       <div class="row align-items-center">
         <div class="col-lg-6 order-lg-2">
+
           <div class="image-section" data-aos="fade-left" data-aos-delay="200">
             <div class="main-image-wrapper">
               <img src="assets/img/cta/cta-4.webp" alt="Sparkline Business Services" class="img-fluid main-img">
@@ -274,75 +548,51 @@
             </div>
 
             <div class="stats-card card-1" data-aos="zoom-in" data-aos-delay="400">
-              <div class="stat-icon">
-                <i class="bi bi-graph-up-arrow"></i>
-              </div>
+              <div class="stat-icon"><i class="bi bi-graph-up-arrow"></i></div>
               <div class="stat-content">
-                <h6>98%</h6>
-                <span>User Satisfaction</span>
+                <h6>98%</h6><span>User Satisfaction</span>
               </div>
             </div>
 
             <div class="stats-card card-2" data-aos="zoom-in" data-aos-delay="500">
-              <div class="stat-icon">
-                <i class="bi bi-person-heart"></i>
-              </div>
+              <div class="stat-icon"><i class="bi bi-person-heart"></i></div>
               <div class="stat-content">
-                <h6>100+</h6>
-                <span>Projects & Trainings</span>
+                <h6>50+</h6><span>Projects & Trainings</span>
               </div>
             </div>
           </div>
+
         </div>
 
         <div class="col-lg-6 order-lg-1">
+
           <div class="content-section" data-aos="fade-right" data-aos-delay="300">
+
             <div class="label-badge" data-aos="fade-up" data-aos-delay="400">
               <i class="bi bi-rocket-takeoff"></i>
-              <span>Start Your Compliance Journey</span>
+              <span>About Sparkline Biz Solutions</span>
             </div>
 
-            <h2 data-aos="fade-up" data-aos-delay="450">Expert HR & Legal Support, Delivered</h2>
-            <p data-aos="fade-up" data-aos-delay="500">
-              Sparkline helps organisations streamline HR processes, manage payroll efficiently, and strengthen compliance through expert advisory and reliable execution — freeing you to focus on growth.
-            </p>
+            <h3 data-aos="fade-up" data-aos-delay="450" style="font-weight: bold; font-size: 50px;">About Us</h3>
 
-            <div class="features-grid" data-aos="fade-up" data-aos-delay="550">
-              <div class="feature-item">
-                <div class="feature-icon">
-                  <i class="bi bi-check-circle-fill"></i>
-                </div>
-                <span>Tailored HR Outsourcing</span>
-              </div>
+            <span data-aos="fade-up" data-aos-delay="500" style="display: block; font-size: 16px; font-size: 18px;">
+              Sparkline Biz Solutions is dedicated to empowering businesses and individuals alike. Our comprehensive services cover:
+              <br><br>
+              <ul class="about-list">
+                <li><strong style="color: #ff7800;">HR & Compliance</strong> – Streamlined processes for smooth operations</li>
+                <li><strong style="color: #ff7800;">Background Verification</strong> – Ensuring trust and integrity in your workforce</li>
+                <li><strong style="color: #ff7800;">Legal & Corporate Services</strong> – Full compliance and risk management support</li>
+                <li><strong style="color: #ff7800;">Training & Development</strong> – Professional skill-building for employees and students</li>
+                <li><strong style="color: #ff7800;">IT Solutions</strong> – Technology-driven efficiency</li>
+                <li><strong style="color: #ff7800;">Corporate Events</strong> – Creating impactful and engaging events</li>
+              </ul>
 
-              <div class="feature-item">
-                <div class="feature-icon">
-                  <i class="bi bi-check-circle-fill"></i>
-                </div>
-                <span>Payroll & Statutory Compliance</span>
-              </div>
+              We also ignite the spark of innovation and skill in students through career-focused training programs, preparing them for success in today’s professional world.
+            </span>
 
-              <div class="feature-item">
-                <div class="feature-icon">
-                  <i class="bi bi-check-circle-fill"></i>
-                </div>
-                <span>Background Verification</span>
-              </div>
-
-              <div class="feature-item">
-                <div class="feature-icon">
-                  <i class="bi bi-check-circle-fill"></i>
-                </div>
-                <span>Training & Development</span>
-              </div>
-            </div>
-
-            <div class="cta-actions" data-aos="fade-up" data-aos-delay="600">
-              <a href="#contact" class="btn btn-cta-primary">Request a Consultation</a>
-          
-            </div>
           </div>
         </div>
+
       </div>
     </div>
 
@@ -350,80 +600,45 @@
 
 </section><!-- /Call To Action Section -->
 
-
-  <!-- Pricing Section -->
-<section id="Services" class="pricing section light-background">
+<!-- Section -->
+<section id="about" class="about section light-background">
 
   <!-- Section Title -->
   <div class="container section-title" data-aos="fade-up">
-    <h2>Fare &  Plans</h2>
-    <p>Flexible service packages for businesses: transparent pricing for HR outsourcing, payroll management, and compliance support. Bespoke solutions for organisations of all sizes.</p>
+    <h2>Vision & Mission</h2>
+    <p>Shaping the Future of HR, Business and Technology Solutions</p>
   </div><!-- End Section Title -->
 
   <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-    <div class="row g-4 justify-content-center">
+    <div class="row gy-4 align-items-center justify-content-center">
 
-      <!-- Base Fare Plan -->
-      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-        <div class="pricing-card">
-          <h3>HR Outsourcing</h3>
-          <p class="description">Comprehensive HR outsourcing services including recruitment, onboarding, payroll administration and statutory compliance managed by experienced professionals.</p>
+      <div class="col-xl-6 col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="200">
 
-          <h4>Core Services:</h4>
-          <ul class="features-list">
-            <li><i class="bi bi-check-circle-fill"></i>Talent acquisition & sourcing</li>
-            <li><i class="bi bi-check-circle-fill"></i>Onboarding & HR administration</li>
-            <li><i class="bi bi-check-circle-fill"></i>Employee lifecycle management</li>
+        <div class="about-description" style="color: #2d2dea;">
+          <strong style="font-size: 25px;">Vision</strong><br>
+          <ul>
+            <li>To be a trusted partner of choice for organizations by delivering seamless HR.</li>
+            <li>Business and Technology Solutions that enable growth, compliance, and excellence.</li>
           </ul>
-
-          <a href="#contact" class="btn btn-primary">
-            Enquire Now
-            <i class="bi bi-arrow-right"></i>
-          </a>
         </div>
+
+          <div class="mission-section">
+            <strong style="font-size: 25px; color: #ff7800;">Mission</strong>
+            <ul>
+              <li>Simplify business operations through efficient and compliant HR practices</li>
+              <li>Empower individuals and teams via continuous learning and professional development</li>
+              <li>Provide strategic business, legal, and management support for sustainable organizational success</li>
+              <li>Foster innovation through technology-driven solutions and corporate collaborations</li>
+            </ul>
+          </div>
       </div>
 
-      <!-- Per KM Plan -->
-      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-        <div class="pricing-card popular">
-          <div class="popular-badge">Most Used</div>
-          <div class="popular-badge">Most Used</div>
-          <h3>Payroll & Compliance</h3>
-          <p class="description">A trusted payroll management company offering accurate payroll processing, statutory filings, payslip delivery and compliance support tailored to your organisation.</p>
-
-          <h4>Core Services:</h4>
-          <ul class="features-list">
-            <li><i class="bi bi-check-circle-fill"></i>End-to-end payroll processing</li>
-            <li><i class="bi bi-check-circle-fill"></i>Statutory compliance & filings</li>
-            <li><i class="bi bi-check-circle-fill"></i>Automated payslips & reports</li>
-            <li><i class="bi bi-check-circle-fill"></i>Secure data handling</li>
-          </ul>
-
-          <a href="#services" class="btn btn-light">
-            Learn More
-            <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- Pregnancy Free Ride Plan -->
-      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-        <div class="pricing-card">
-          <h3 style="color: #d9230f;">Legal & Advisory</h3>
-          <p class="description">Corporate legal advisory and management services to help you navigate regulations, contracts and corporate governance with confidence.</p>
-
-          <h4>Core Services:</h4>
-          <ul class="features-list">
-            <li><i class="bi bi-check-circle-fill"></i>Corporate legal advisory</li>
-            <li><i class="bi bi-check-circle-fill"></i>Contract review & drafting</li>
-            <li><i class="bi bi-check-circle-fill"></i>Compliance assessments & audits</li>
-          </ul>
-
-          <a href="#contact" class="btn btn-primary">
-            Talk to an Advisor
-            <i class="bi bi-arrow-right"></i>
-          </a>
+      <div class="col-xl-6 col-lg-6 col-md-12 d-flex justify-content-center" data-aos="zoom-out" data-aos-delay="800" style="padding-right:20px;">
+        <div class="image-wrapper">
+          <div class="images position-relative" data-aos="zoom-out" data-aos-delay="400">
+            <img src="assets/img/spark (2).gif" alt="Auto Booking Technology" class="img-fluid main-image rounded-4">
+          </div>
         </div>
       </div>
 
@@ -431,10 +646,579 @@
 
   </div>
 
-</section><!-- /Pricing Section -->
+</section><!-- /Section -->
 
 
-   <!-- Faq Section -->
+<!-- Founder Profile Section -->
+<section class="py-5 bg-light" id="founder">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Founder Image -->
+      <div class="col-md-5 text-center mb-4 mb-md-0">
+        <img src="assets/img/photo.jpeg" alt="Ms. Nageswari - Founder of SparkLine Biz Solutions" class="img-fluid rounded-3 shadow-lg" style="max-width: 350px;">
+      </div>
+
+      <!-- Founder Details -->
+      <div class="col-md-7">
+        <h2 class="fw-bold text-primary mb-3">Founder Profile</h2>
+        <h4 class="fw-semibold mb-3">Ms. Nageswari</h4>
+        <p class="text-f">
+          With over two decades of rich experience in Human Resources, <strong>Ms. Nageswari</strong> brings unmatched
+          expertise in <strong>Talent Acquisition</strong>, <strong>People Management</strong>, <strong>Strategic HR</strong>, and
+          <strong>Process Design</strong>. Her journey spans across IT, ITES, and Non-IT sectors, where she has played
+          pivotal roles in shaping workforce strategies and driving HR excellence.
+        </p>
+        <p class="text-f2">
+          As the visionary behind <strong>SparkLine Biz Solutions</strong>, she combines her vast corporate knowledge with a
+          passion for empowering organizations and individuals through <strong>consulting</strong>, <strong>audits</strong>,
+          <strong>training</strong>, and <strong>awareness initiatives</strong>.
+        </p>
+          <div class="d-flex align-items-center bg-white border rounded-3 p-3 shadow-sm" style="max-width: 420px;">
+            <i class="bi bi-award-fill text-warning fs-3 me-3"></i>
+            <div>
+              <h6 class="mb-0 fw-bold">Awards & Recognition</h6>
+              <small class="text-muted">Best HR Award – Gold Heart Foundation</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Founder Profile Section -->
+
+<!--Services-->
+<section id="Services" class="about section light-background">
+  <div class="container section-title" data-aos="fade-up">
+  <h2>End-to-End HR Business Services</h2>
+  <p>Flexible service packages for businesses: transparent pricing for HR outsourcing, payroll management, and compliance support. Bespoke solutions for organisations of all sizes.</p>
+</div>
+
+<div class="container" data-aos="fade-up" data-aos-delay="100">
+  <div class="service-grid">
+
+    <!-- CARD 1 -->
+    <div class="service-item">
+      <div class="service-card">
+        <img src="assets/img/rec.jpg" alt="Service">
+        <div class="content">
+          <ul class="service-list">
+            <li>Expertise in sectors such as Automobile, Manufacturing, Health Care, IT, ITES, Non-IT</li>
+            <li>Talent Acquisition</li>
+            <li>Permanent Staffing</li>
+            <li>Contract Staffing</li>
+            <li>Executive & Leadership Hiring</li>
+            <li>Faster Turnaround Time</li>
+            <li>Long Term Relation & Retention</li>
+            <li>Strategic Workflow Planning</li>
+            <li>Strong Network & Retention</li>
+            <li>Time & Resource Efficiency</li>
+          </ul>
+        </div>
+      </div>
+      <h5 class="service-title">Recruitment & Staffing</h5>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="service-item">
+      <div class="service-card">
+        <img src="assets/img/pay.jpg" alt="Service">
+        <div class="content">
+          <ul class="service-list">
+            <li>End-to-End Payroll Management</li>
+            <li>Salary Structuring & Processing</li>
+            <li>Payslip Generation</li>
+            <li>Tax Deductions & Income Tax Compliance</li>
+            <li>Leave, Attendance & Overtime Integration</li>
+            <li>PF & ESI</li>
+            <li>Professional Tax & LWF</li>
+            <li>S&E Compliance</li>
+            <li>Minimum Wages & Bonus Act</li>
+            <li>Employee Benefits Management</li>
+          </ul>
+        </div>
+      </div>
+      <h5 class="service-title">Payroll & Compliance</h5>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="service-item">
+      <div class="service-card">
+        <img src="assets/img/HRG.webp" alt="Service">
+        <div class="content">
+          <ul class="service-list">
+            <li>Policy Formulation</li>
+            <li>Job Descriptions</li>
+            <li>KPI / KRA Structuring</li>
+            <li>C&B Management</li>
+            <li>Employee Relations</li>
+            <li>HR Audits</li>
+            <li>Payroll Audits</li>
+            <li>Statutory Audits</li>
+            <li>P-O-S-H Compliance</li>
+          </ul>
+        </div>
+      </div>
+      <h5 class="service-title">HR Advisory & Audit Services</h5>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="service-item">
+      <div class="service-card">
+        <img src="assets/img/legal.jpg" alt="Service">
+        <div class="content">
+          <ul class="service-list">
+            <li>Company Incorporation & Licensing</li>
+            <li>Restructuring Process</li>
+            <li>Business Startups / Mergers/ Acquisitions</li>
+            <li>HR & Employment Related Drafting </li>
+            <li>Agreement & MOU Drafting</li>
+            <li>Regulatory, Risk & Compliance Management</li>
+            <li>HR related legal services</li>
+            <li>P-O-S-H Services</li>
+          </ul>
+        </div>
+      </div>
+      <h5 class="service-title">Legal & Management Services</h5>
+    </div>
+
+    <!-- CARD 5 -->
+    <div class="service-item">
+      <div class="service-card">
+        <img src="assets/img/background.webp" alt="Service">
+        <div class="content">
+          <ul class="service-list">
+            <li>Education Verification</li>
+            <li>Physical Address Verification</li>
+            <li>Criminal Verification</li>
+            <li>Employment verification</li>
+            <li>Bank statement verification</li>
+            <li>ID Verification</li>
+            <li>Credit Check – CIBIL</li>
+            <li>Psychometric Test </li>
+            <li>Fingerprint Services</li>
+            <li>Medical Check</li>         
+          </ul>
+        </div>
+      </div>
+      <h5 class="service-title">Back Ground Verification</h5>
+    </div>
+
+    <!-- CARD 6 -->
+    <div class="service-item">
+      <div class="service-card">
+        <img src="assets/img/learn.jpg" alt="Service">
+        <div class="content">
+          <ul class="service-list">
+            <li>Corporate Training</li>
+            <li>Leadership Training </li>
+            <li>Communication Training</li>
+            <li>Behavioural Training</li>
+            <li>Motivational Training</li>
+            <li>Team Building</li>
+            <li>Stress Management</li>
+            <li>Emotional Intelligence</li>
+            <li>Customer Service Excellence</li>
+            <li>Workplace Etiquette & Professional Grooming</li>
+          </ul>
+        </div>
+      </div>
+      <h5 class="service-title">Professional Development Training</h5>
+    </div>
+
+    <!-- CARD 7 -->
+    <div class="service-item">
+      <div class="service-card">
+        <img src="assets/img/skills.jpg" alt="Service">
+        <div class="content">
+          <ul class="service-list">
+            <li>Ms Office (Advanced Excel & PPT)</li>
+            <li>IT Skills</li>
+            <li>Sales Skills</li>
+            <li>Statutory Compliance</li>
+            <li>Artificial Intelligence</li>
+            <li>Programming Fundamentals (Python / Java / C++ / Dot Net etc..)</li>
+            <li>Cloud Computing Basics (AI / AWS / Azure / GCP)</li>
+            <li>ERP Systems (SAP / Oracle / Tally)</li>
+            <li>Software Testing (Manual & Automation)</li>
+            <li>Networking & IT Infrastructure Fundamentals</li>
+            <li>HR Compliance Training</li>
+            <li>Labour Laws & Regulatory Compliance</li>
+            <li>5 S Training</li>
+          </ul>
+        </div>
+      </div>
+      <h5 class="service-title">Technical Skills Training</h5>
+    </div>
+
+    <!-- CARD 8 -->
+    <div class="service-item">
+      <div class="service-card">
+        <img src="assets/img/development.avif" alt="Service">
+        <div class="content">
+          <ul class="service-list">
+            <li>Custom HR software solutions</li>
+            <li>Recruitment & ATS systems</li>
+            <li>Payroll, leave & attendance apps</li>
+            <li>Digital onboarding portals</li>
+            <li>Performance & KPI/KRA trackers</li>
+            <li>HR analytics dashboards</li>
+            <li>Mobile apps for HR operations</li>
+            <li>Cloud-based, secure & scalable solutions</li>
+          </ul>
+        </div>
+      </div>
+      <h5 class="service-title">Software Development</h5>
+    </div>
+
+    <!-- CARD 9 -->
+    <div class="service-item">
+      <div class="service-card">
+        <img src="assets/img/po.webp" alt="Service">
+        <div class="content">
+          <ul class="service-list">
+            <li>Workplace Safety & Fire Drill</li>
+            <li>Cybersecurity & Data Privacy</li>
+            <li>Health & Wellness Awareness </li>
+            <li>P-O-S-H</li>
+            <li>Fire & Safety</li>
+            <li>First Aid</li>
+            <li>Self-Defence</li>
+            <li>Work-Life Balance</li>
+            <li>Digital & Social Media Usage</li>
+          </ul>
+        </div>
+      </div>
+      <h5 class="service-title">Awareness Sessions</h5>
+    </div>
+
+    <!-- CARD 10 -->
+    <div class="service-item">
+      <div class="service-card">
+        <img src="assets/img/career.webp" alt="Service">
+        <div class="content">
+          <ul class="service-list">
+            <li>Technical Training </li>
+            <li>Business & Management Training</li>
+            <li>Soft Skills Training</li>
+            <li>Career Development & Placement Program</li>
+            <li>College Partnerships Programs</li>
+            <li>Motivational Trainings</li>
+            <li>P-O-S-H</li>
+            <li>Cybersecurity</li>
+            <li>Self Defence</li>
+          </ul>
+        </div>
+      </div>
+      <h5 class="service-title">College Programs & Services</h5>
+    </div>
+
+    <!-- CARD 10 -->
+    <div class="service-item">
+      <div class="service-card">
+        <img src="assets/img/events.jpg" alt="Service">
+        <div class="content">
+          <ul class="service-list">
+            <li>End-to-end corporate event planning & management</li>
+            <li>Annual day & corporate celebrations</li>
+            <li>Product launches & brand activation events</li>
+            <li>Conferences, seminars & business meets</li>
+            <li>Award ceremonies & employee recognition events</li>
+            <li>HR engagement events & cultural programs</li>
+            <li>Training workshops & professional development events</li>
+            <li>Client meetings, networking events & business dinners</li>
+          </ul>
+        </div>
+      </div>
+      <h5 class="service-title">Corporate Events</h5>
+    </div>
+
+  </div>
+</div>
+</section>
+
+
+<!-- CLIENTS SECTION -->
+<section id="clients" class="client section bg-light">
+<div class="row mt-5">
+  <div class="col-12">
+    <div class="container section-title" data-aos="fade-up">
+    <a href="#clients"><h2>Our Clients</h2></a>
+    <p class="text-client">
+      We proudly serve clients across IT, ITES, Non-IT, Education, Healthcare,
+      Manufacturing, Retail, and Service sectors.
+    </p>
+  </div>
+  </div>
+
+  <div class="col-12">
+    <div class="d-flex flex-wrap align-items-center justify-content-center gap-4 client-logos" data-aos="fade-up">
+      <img src="assets/img/logo1.jpg" class="img-fluid" alt="Client Logo" style="height:60px;">
+      <img src="assets/img/logo2.jpg" class="img-fluid" alt="Client Logo">
+      <img src="assets/img/logo3.jpg" class="img-fluid" alt="Client Logo" style="height:60px;">
+      <img src="assets/img/logo4.jpg" class="img-fluid" alt="Client Logo">
+      <img src="assets/img/logo5.png" class="img-fluid" alt="Client Logo" style="height:60px;">
+      <img src="assets/img/logo6.jpg" class="img-fluid" alt="Client Logo">
+      <img src="assets/img/logo7.jpg" class="img-fluid" alt="Client Logo">
+      <img src="assets/img/logo8.png" class="img-fluid" alt="Client Logo" style="height:80px;">
+      <img src="assets/img/logo9.png" class="img-fluid" alt="Client Logo" style="height:80px;">
+      <img src="assets/img/logo10.png" class="img-fluid" alt="Client Logo" style="height:60px;">
+    </div>
+  </div>
+</div>
+</section>
+
+<!--Careers-->
+<section id="careers" class="py-5 light-background">
+  <div class="container section-title" data-aos="fade-up">
+
+    <div class="text-center mb-4">
+      <h2 class="fw-bold">Careers</h2>
+      <p class="text-careers">
+        Join our team and explore exciting opportunities across technology, HR, and business services - Current Openings.
+      </p>
+    </div>
+
+    <!-- Career FAQ List -->
+    <div class="career-faq-container">
+
+      <!-- Job 1 -->
+      <div class="career-faq-item">
+        <div class="career-faq-header">
+          <span>DESKTOP SUPPORT ENGINEER L1 (Gurgaon, Bangalore, Mumbai)</span>
+          <i class="career-faq-icon bi bi-chevron-right"></i>
+        </div>
+        <div class="career-faq-content" style="text-align: left;">
+          Experience: 2 years <br>
+          Employment: Full-Time <br>
+          Skills: Recruitment, onboarding, HR operations <br>
+          Qualification: Any Graduate <br>
+          CTC: 24,000 CTC <br><br>
+
+          <strong>Responsibilities:</strong><br>
+          Provide IT support by diagnosing and resolving hardware, software, network, and application issues, including installation, configuration, and troubleshooting of systems, peripherals, and devices.<br><br>
+
+          <strong>Extra Duties:</strong><br>
+          Manage IT assets, perform system updates and patching, maintain MS Office/Windows environments, support meeting room A/V setups, and ensure smooth daily IT operations.<br><br>
+
+          <a href="#contact" class="btn btn-primary btn-sm">To Know more</a>
+        </div>
+      </div>
+
+      <!-- Job 2 -->
+      <div class="career-faq-item">
+        <div class="career-faq-header">
+          <span>DESKTOP SUPPORT ENGINEER L2 (Bangalore, Gurgaon, Mumbai)</span>
+          <i class="career-faq-icon bi bi-chevron-right"></i>
+        </div>
+        <div class="career-faq-content" style="text-align: left;">
+          Experience: 3 years <br>
+          Qualification: Any Graduate <br>
+          CTC: 30,000 CTC <br>
+          Shift: 9:30 AM – 6:30 PM <br><br>
+
+          <strong>Technical Skills:</strong><br>
+          Experienced in day-to-day IT support, troubleshooting hardware/software/network issues, OS installation (Windows & Mac), printer/scanner setup, ITSM ticket handling, remote support, asset management.<br><br>
+
+          <strong>Additional Expertise:</strong><br>
+          Skilled in antivirus/software installation, hardware maintenance, escalation handling, coordination with L3 teams.<br><br>
+
+          <a href="#contact" class="btn btn-primary btn-sm">To Know more</a>
+        </div>
+      </div>
+
+      <!-- Job 3 -->
+      <div class="career-faq-item">
+        <div class="career-faq-header">
+          <span>AI Support Engineer (AWS L1 Support) – Chennai</span>
+          <i class="career-faq-icon bi bi-chevron-right"></i>
+        </div>
+        <div class="career-faq-content" style="text-align: left;">
+          Experience: 1.5–5 years <br>
+          Mode: Office <br>
+          Shift: Rotational <br>
+          CTC: 4.5–9 LPA <br><br>
+
+          <strong>Role Overview:</strong><br>
+          AI Support Engineer to support AI/ML workloads, troubleshoot Python/FastAPI services, and assist with Generative AI & LLM operations on AWS.<br><br>
+
+          <strong>Key Responsibilities:</strong><br>
+          The role includes monitoring ML pipelines, resolving tickets, automating tasks, and coordinating with L2/L3 teams.<br><br>
+
+          <strong>Technical Skills:</strong><br>
+          Experiences in strong Python/FastAPI skills, knowledge of Generative AI/LLMs, and hands-on AWS experience.<br><br>
+
+          <a href="#contact" class="btn btn-primary btn-sm">To Know more</a>
+        </div>
+      </div>
+
+      <!-- Job 4 -->
+      <div class="career-faq-item">
+        <div class="career-faq-header">
+          <span>Network Engineer L1 - NTPC NOIDA</span>
+          <i class="career-faq-icon bi bi-chevron-right"></i>
+        </div>
+        <div class="career-faq-content" style="text-align: left;">
+          Experience: 1-2 years <br>
+          Employment: Full-Time <br>
+          CTC: 23,000 - 25,000 CTC <br><br>
+
+          <strong>Responsibilities:</strong><br>
+          Monitor network, troubleshoot basic LAN/WAN/Wi-Fi issues, and respond to tickets.
+          Support installation, updates, and routine maintenance of networking devices.
+          Document issues and coordinate with L2/L3 engineers for escalations.<br><br>
+
+          <strong></strong>Required Skills & Qualifications:</strong><br>
+          BE/B.Tech/MCA with understanding of TCP/IP, DNS, DHCP, LAN/WAN fundamentals.
+          Basic knowledge of routers/switches (Cisco/Juniper preferred) and good communication skills.
+          Team player with ability to follow procedures and work in rotational shifts.<br><br>
+
+          <strong></strong>Preferred Certifications:</strong><br>
+          CCNA preferred but not mandatory.
+          Shows solid networking fundamentals.
+          Adds value for career growth.<br><br>
+
+          <a href="#contact" class="btn btn-primary btn-sm">To Know more</a>
+        </div>
+      </div>
+
+      <!-- Job 5 -->
+      <div class="career-faq-item">
+        <div class="career-faq-header">
+          <span>Senior SAP FICO Consultant</span>
+          <i class="career-faq-icon bi bi-chevron-right"></i>
+        </div>
+        <div class="career-faq-content" style="text-align: left;">
+          Experience: 10+ years <br>
+          Employment: Full-Time <br><br>
+      
+          <strong>Responsibilities:</strong><br>
+          Lead retail SAP FICO implementations across Instore & Ecommerce with expertise in GL, AP, AR, Assets, Tax, Banking & Integrations.<br>
+          Configure & support S/4HANA Financials including Cost Centers, Internal Orders, Profit Centers, and FI/CO integration with MM, SD, SRM, Ariba, Coupa, Vertex.<br>
+          Manage interfaces (Bank files, MT940, HighRadius, SWIFT, PI), data migration ECC→S4, batch scheduling, and end-to-end finance processes.<br><br>
+
+          <strong>Required Skills & Qualifications:</strong><br>
+          Strong knowledge of SAP FI modules (GL, AP, AR, AA, Banking, Taxation) and CO modules (CCA, PCA, IO).<br>
+          Expertise in AP configuration (Vendor setup, F110, ISO 20022, SEPA, ACH, NEFT), master data (Vendor, Customer, Bank, BP), and retail finance processes.<br>
+          Hands-on experience in S/4HANA, financial integrations, payment files, acknowledgments, and migration strategy for master & transactional data.<br><br>
+
+          <strong>Preferred Skills:</strong><br>
+          Knowledge of MDG-S, BPM/Ariba/Concur/Blackline/Lucernex, GR/IR, and product costing & profitability analysis.<br>
+          Experience with Control-M/CA7 for job scheduling and strong middleware integration skills (PI, SWIFT).<br>
+          Ability to manage workshops, create documentation, support deployment, coordinate with cross-functional teams, and coach juniors.<br><br>
+
+          <a href="#contact" class="btn btn-primary btn-sm">To Know more</a>
+        </div>
+      </div>
+
+      <!-- Job 6 -->
+      <div class="career-faq-item">
+        <div class="career-faq-header">
+          <span>SAP CO Consultant</span>
+          <i class="career-faq-icon bi bi-chevron-right"></i>
+        </div>
+        <div class="career-faq-content" style="text-align: left;">
+          Employment: Full-Time <br><br>
+
+          <strong>Responsibilities:</strong><br>
+          Understand customer needs, analyze business processes, conduct meetings, and document requirements.<br>
+          Implement and support CO functions including cost centers, profit centers, product costing, and full FICO configuration.<br>
+          Provide functional support, manage workshops, coordinate cross-module teams, and ensure quality delivery.<br><br>
+
+          <strong>Required Skills:</strong><br>
+          Strong knowledge of CO (CCA, PCA, IO, COPA) and integration with GL, AP, AR, AA, and other FICO modules.<br>
+          Ability to configure modules, support deployments, collaborate with ABAP teams, and manage client interactions.<br>
+          Experience in documentation, blueprinting, planning, and ensuring project scalability and consistency.<br><br>
+
+          <strong>Preferred Skills:</strong><br>
+          Experience coaching junior consultants and leading sub-projects.<br>
+          Strong process understanding with exposure to global SAP environments.<br>
+          Knowledge of reporting, profitability tools, and enterprise financial processes.<br><br>
+
+          <a href="#contact" class="btn btn-primary btn-sm">To Know more</a>
+        </div>
+      </div>
+
+      <!-- Job 7>
+      <div class="career-faq-item">
+        <div class="career-faq-header">
+          <span>AI / ML Engineer</span>
+          <i class="career-faq-icon bi bi-chevron-right"></i>
+        </div>
+        <div class="career-faq-content" style="text-align: left;">
+          Experience: 1 years <br>
+          Mode: WFH <br><br>
+
+          <strong>Key Responsibilities:</strong><br>
+          Design, develop, and deploy scalable ML/AI solutions including preprocessing, model training, and optimization.<br>
+          Integrate ML models into production systems and collaborate with cross-functional teams.<br>
+          Research and implement advanced algorithms and emerging AI/ML technologies.<br><br>
+
+          <strong>Required Skills:</strong><br>
+          Strong Python knowledge with TensorFlow, PyTorch, or Scikit-learn experience.<br>
+          Good understanding of statistics, algorithms, and data structures; exposure to NLP/CV/predictive analytics is a plus.<br>
+          Familiarity with cloud platforms like AWS, Azure, or GCP is preferred.<br><br>
+
+          <a href="#contact" class="btn btn-primary btn-sm">To Know more</a>
+        </div>
+      </div--->
+
+      <!-- Job 8 -->
+      <div class="career-faq-item">
+        <div class="career-faq-header">
+          <span>Senior Business Development Executive (BDE)</span>
+          <i class="career-faq-icon bi bi-chevron-right"></i>
+        </div>
+        <div class="career-faq-content" style="text-align: left;">
+          Experience: 4–7 years years <br>
+          Mode: WFH <br><br>
+
+          <strong>Key Responsibilities:</strong><br>
+          Identify, generate, and close new business opportunities for Ecosoft’s products and services.<br>
+          Build strong client relationships, understand business needs, and deliver tailored solutions.<br>
+          Drive revenue growth through sales strategies, market analysis, partnerships, and team collaboration.<br><br>
+
+          <strong>Required Skills:</strong><br>
+          Proven B2B/IT sales experience with a strong track record of meeting or exceeding targets.<br>
+          Excellent communication, negotiation, and presentation skills with strong IT solution understanding.<br>
+          Strategic mindset, leadership qualities, and strong client management skills.<br><br>
+
+          <a href="#contact" class="btn btn-primary btn-sm">To Know more</a>
+        </div>
+      </div>
+
+      <!-- Job 9 -->
+      <div class="career-faq-item">
+        <div class="career-faq-header">
+          <span>Implementation and Support Engineer</span>
+          <i class="career-faq-icon bi bi-chevron-right"></i>
+        </div>
+        <div class="career-faq-content" style="text-align: left;">
+          Experience: 2–5 years (Healthcare domain preferred) <br>
+          Mode: WFH <br><br>
+
+          <strong>Key Responsibilities:</strong><br>
+          Implement and support healthcare software systems including setup, configuration, and testing.<br>
+          Provide technical assistance, troubleshoot issues, and optimize customer workflows.<br>
+          Conduct training, maintain documentation, and ensure smooth customer onboarding.<br><br>
+          
+          <strong>Required Skills:</strong><br>
+          Minimum 2 years of HIS/EMR implementation or support experience.<br>
+          Strong understanding of healthcare workflows, EHR/PMS systems, and medical terminology.<br>
+          Excellent problem-solving, communication skills, and ability to multitask in fast-paced environments.<br><br>
+
+
+          <a href="#contact" class="btn btn-primary btn-sm">To Know more</a>
+        </div>
+      </div>
+
+    </div>
+    <!--<If no openings>-->
+      <!--<p class="text-muted mt-4">Currently, there are no openings. Please check back later.</p>-->
+  </div>
+</section>
+
+<!-- Faq Section>
 <section id="faq" class="faq section">
   <div class="container">
     <div class="row gy-4">
@@ -453,7 +1237,7 @@
           <div class="faq-item faq-active">
             <h3><span class="num">1.</span> <span>What services does Sparkline Business Services provide?</span></h3>
             <div class="faq-content">
-              <p>
+              <p style="color: #ff7800;">
                 Sparkline provides talent acquisition, employee background verification, payroll and statutory compliance, HR advisory & audit, corporate legal services, professional and technical trainings, corporate event management and business software development.
               </p>
             </div>
@@ -463,7 +1247,7 @@
           <div class="faq-item">
             <h3><span class="num">2.</span> <span>How does your employee background verification work?</span></h3>
             <div class="faq-content">
-              <p>
+              <p style="color: #ff7800;">
                 Our background verification process combines document checks, reference validation and identity verification to deliver reliable employee screening that protects your hiring decisions.
               </p>
             </div>
@@ -473,7 +1257,7 @@
           <div class="faq-item">
             <h3><span class="num">3.</span> <span>How do I engage Sparkline for payroll management?</span></h3>
             <div class="faq-content">
-              <p>
+              <p style="color: #ff7800;">
                 Contact our team via phone or the enquiry form to schedule a consultation. We assess your payroll needs, propose a compliant solution and manage implementation with secure processes.
               </p>
             </div>
@@ -483,7 +1267,7 @@
           <div class="faq-item">
             <h3><span class="num">4.</span> <span>What makes Sparkline a reliable payroll management company?</span></h3>
             <div class="faq-content">
-              <p>
+              <p style="color: #ff7800;">
                 We combine domain expertise, secure systems and up-to-date statutory knowledge to process payroll accurately and ensure timely compliance filings for our clients.
               </p>
             </div>
@@ -493,7 +1277,7 @@
           <div class="faq-item">
             <h3><span class="num">5.</span> <span>Do you offer training and development solutions?</span></h3>
             <div class="faq-content">
-              <p>
+              <p style="color: #ff7800;">
                 Yes. We provide professional and technical training solutions, awareness sessions, and customized learning programs to upskill teams and support organisational development.
               </p>
             </div>
@@ -504,11 +1288,210 @@
       </div>
     </div>
   </div>
-</section><!-- /Faq Section -->
+</section></Faq Section -->
 
+<!--Gallery-->
+<section id="gallery" class="py-5 bg-light">
+   <div class="container section-title" data-aos="fade-up">
+    <h2 class="text-center">
+  <a href="#gallery" class="gallery" style="color: #ff7800;">Gallery</a>
+</h2>
+<p>Explore Our Work Through Our Visual Journey — a showcase of our milestones, creativity, and real project moments.</p>
+<div class="container py-4">
+  <div class="row g-3">
+
+    <!-- slide 1 -->
+    <div class="col-md-4 col-6">
+      <div class="gallery-item">
+        <div class="swiper gallery-slider">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="assets/img/g1.jpg" alt="Gallery Image">
+            </div>
+             <div class="swiper-slide">
+              <img src="assets/img/g9.jpg" alt="Gallery Image">
+            </div>
+            <div class="swiper-slide">
+              <img src="assets/img/g12.jpg" alt="Gallery Image">
+            </div>
+          </div>
+          <!-- Pagination (dots) -->
+           <div class="swiper-pagination"></div>
+           <!-- Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- slide 2 -->
+    <div class="col-md-4 col-6">
+      <div class="gallery-item">
+        <div class="swiper gallery-slider">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="assets/img/g2.jpg" alt="Gallery Image">
+            </div>
+            <div class="swiper-slide">
+              <img src="assets/img/g4.png" alt="Gallery Image">
+            </div>
+            <div class="swiper-slide">
+              <img src="assets/img/g6.png" alt="Gallery Image">
+            </div>
+            <div class="swiper-slide">
+              <img src="assets/img/g10.jpg" alt="Gallery Image">
+            </div>
+            <div class="swiper-slide">
+              <img src="assets/img/g11.jpg" alt="Gallery Image">
+            </div>
+          </div>
+          <!-- Pagination (dots) -->
+           <div class="swiper-pagination"></div>
+           <!-- Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- slide 3 -->
+    <div class="col-md-4 col-6">
+      <div class="gallery-item">
+        <div class="swiper gallery-slider">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="assets/img/g3.jpg" alt="Gallery Image">
+            </div>
+            <div class="swiper-slide">
+              <img src="assets/img/g1-2.jpg" style="object-fit: contain;" alt="Gallery Image">
+            </div>
+          </div>
+          <!-- Pagination (dots) -->
+           <div class="swiper-pagination"></div>
+           <!-- Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- slide 4-->
+    <div class="col-md-4 col-6">
+      <div class="gallery-item">
+        <div class="swiper gallery-slider">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <video controls>
+                <source src="assets/img/g5.mp4" type="video/mp4" alt="Gallery Video">
+              </video>
+            </div>
+          </div>
+          <!-- Pagination (dots) -->
+           <div class="swiper-pagination"></div>
+           <!-- Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </div>
+
+     <!-- slide 5 -->
+    <div class="col-md-4 col-6">
+      <div class="gallery-item">
+        <div class="swiper gallery-slider">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="assets/img/g8.jpg" alt="Gallery Image">
+            </div>
+          </div>
+          <!-- Pagination (dots) -->
+           <div class="swiper-pagination"></div>
+           <!-- Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- slide 6 -->
+    <div class="col-md-4 col-6">
+      <div class="gallery-item">
+        <div class="swiper gallery-slider">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="assets/img/poster.png" style="object-fit: contain;" alt="Gallery Image">
+            </div>
+          </div>
+          <!-- Pagination (dots) -->
+           <div class="swiper-pagination"></div>
+           <!-- Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- Reviews -->
+<section id="reviews" class="py-5 light-background">
+  <div class="container section-title" data-aos="fade-up">
+    <h2 class="text-center">
+  <a href="#reviews" class="review-link" style="color: #ff7800;">Testimonial</a>
+</h2>
+<p>Real Stories, Real Experiences — From Our Clients, showcasing the trust and confidence they place in us.</p>
+    <div class="row mt-4">
+
+      <!-- Review 1 -->
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card shadow-sm border-0 h-100" data-aos="fade-up">
+          <div class="review-card p-3">
+            <h3>⭐⭐⭐⭐⭐</h3>
+            <p style="color: #2d2dea;">"Excellent service offered professionally at nominal pricing. Courteous staff and satisfactory service for Payroll Maintenance and Event Management. Wish the team all the best."</p>
+            <span style="color: #ff7800;">- Roshini Devi</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card shadow-sm border-0 h-100" data-aos="fade-up">
+          <div class="review-card p-3">
+            <h3>⭐⭐⭐⭐</h3>
+            <p style="color: #2d2dea;">"Their expertise and strategic guidance have made a significant positive impact on our organization.<br>
+               We highly recommend them for HR consulting needs. Thank you for your wonderful guidance."</p>
+            <span style="color: #ff7800;">- Ramachandran K</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card shadow-sm border-0 h-100" data-aos="fade-up">
+          <div class="review-card p-3">
+            <h3>⭐⭐⭐⭐⭐</h3>
+            <p style="color: #2d2dea;">"I had an excellent experience working for our recent round of hiring. As a growing startup, we were in need of a robust and efficient recruitment. They delivered exactly what we were looking for."</p>
+            <span style="color: #ff7800;">- Heat Cooling System</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Google Review Button -->
+    <div class="text-center mt-4">
+      <button class="btn btn-primary" onclick="openGoogleReview()">
+        Write / View Google Reviews
+      </button>
+    </div>
+
+  </div>
+</section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact section light-background">
+    <section id="contact" class="contact section bg-light">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -558,10 +1541,10 @@
 
           <div class="col-lg-7">
             <div class="contact-form" data-aos="fade-up" data-aos-delay="300">
-              <h3>Get In Touch</h3>
+              <h3>Get In Touch With Us</h3>
               <p>Tell us about your business needs and we’ll propose a tailored HR, payroll or legal solution. Use the form or call +91 81484 20075 for immediate assistance.</p>
 
-              <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+              <form action="contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
                 <div class="row gy-4">
 
                   <div class="col-md-6">
@@ -620,8 +1603,7 @@
 
       
 
-       
-
+      
         <div class="col-lg-4 col-md-12">
           <h4>Follow Us</h4>
           <div class="social-links d-flex">
@@ -646,14 +1628,12 @@
 
 <!-- Bottom Navbar -->
 <div class="bottom-nav" id="bottomNav">
-  <div class="indicator" id="indicator"></div>
-  
   <div class="nav-item" data-section="hero">
     <i class="bi bi-house-door-fill"></i>
     <span>Home</span>
   </div>
   
-  <div class="nav-item" data-section="about">
+  <div class="nav-item" data-section="call-to-action">
     <i class="bi bi-info-circle-fill"></i>
     <span>About Us</span>
   </div>
@@ -662,16 +1642,33 @@
     <i class="bi bi-database-fill-gear"></i>
     <span>Services</span>
   </div>
-  
-  <div class="nav-item" data-section="faq">
-    <i class="bi bi-question-circle-fill"></i>
-    <span>FAQ</span>
+
+  <div class="nav-item" data-section="clients">
+    <i class="bi bi-person-badge-fill"></i>
+    <span>Clients</span>
+  </div>
+
+  <div class="nav-item" data-section="careers">
+    <i class="bi bi-briefcase-fill"></i>
+    <span>Careers</span>
+  </div>
+
+  <div class="nav-item" data-section="gallery">
+    <i class="bi bi-image"></i>
+    <span>Gallery</span>
   </div>
   
+  <div class="nav-item" data-section="reviews">
+    <i class="bi bi-stars"></i>
+    <span>Reviews</span>
+  </div>
+
   <div class="nav-item" data-section="contact">
     <i class="bi bi-telephone-fill"></i>
     <span>Contact</span>
   </div>
+  <!-- FIX: INDICATOR MUST BE LAST -->
+  <div class="indicator" id="indicator"></div>
 </div>
 
 
@@ -690,6 +1687,9 @@
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
@@ -766,6 +1766,84 @@
       }
     });
   });
+
+  //review link
+  function openGoogleReview() {
+  window.open("https://maps.app.goo.gl/AsbYD2oLsfujfie4A", "_blank");
+}
+
+//accordin for careers
+document.querySelectorAll('.career-faq-item').forEach(item => {
+  item.addEventListener('click', () => {
+    item.classList.toggle('active');
+  });
+});
+
+const section = document.querySelectorAll("section");
+const navItem = document.querySelectorAll(".nav-item");
+const indicators = document.getElementById("indicator");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  section.forEach(sec => {
+    const top = window.scrollY;
+    const offset = sec.offsetTop - 200; 
+    const height = sec.offsetHeight;
+
+    if (top >= offset && top < offset + height) {
+      current = sec.getAttribute("id");
+    }
+  });
+
+  navItem.forEach((item, index) => {
+    if (item.dataset.section === current) {
+      indicators.style.left = `calc((100% / 8) * ${index})`;
+    }
+  });
+});
+
+//slider
+document.addEventListener("DOMContentLoaded", function () {
+
+  var sliders = document.querySelectorAll(".gallery-slider");
+
+  sliders.forEach(function (slider) {
+    new Swiper(slider, {
+      loop: true,
+
+      pagination: {
+        el: slider.querySelector(".swiper-pagination"),
+        clickable: true,
+      },
+
+      navigation: {
+        nextEl: slider.querySelector(".swiper-button-next"),
+        prevEl: slider.querySelector(".swiper-button-prev"),
+      },
+
+    });
+  });
+
+});
+
+//auto slide
+var gallerySwiper = new Swiper(".gallery-slider", {
+    loop: true,
+    autoplay: {
+      delay: 2000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+
 </script>
 
 

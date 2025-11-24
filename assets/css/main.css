@@ -14,11 +14,21 @@
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #555555; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #0d3035; /* Color for headings, subheadings and title throughout the website */
+  --default-color: #2d2dea; /* Default color used for the majority of the text content across the entire website */
+  --heading-color: #ff7800; /* Color for headings, subheadings and title throughout the website */
   --accent-color: #036dda; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+}
+
+body {
+  font-family: var(--default-font);
+  color: var(--default-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font);
+  color: var(--heading-color);
 }
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
@@ -50,7 +60,23 @@
 :root {
   scroll-behavior: smooth;
 }
+/* logo */
+.header .logo img {
+    height: 55px !important;
+    max-height: 55px !important;
+    width: auto !important;
+}
+.services-img {
+    height: 400px;              
+    width: 100%;
+    object-fit: cover;          
+    border-radius: 12px;
+  }
 
+  /* spacing between sections */
+  .service-block {
+    margin-bottom: 80px;
+  }
 /*--------------------------------------------------------------
 # General Styling & Shared Classes
 --------------------------------------------------------------*/
@@ -80,6 +106,53 @@ h6 {
   color: var(--heading-color);
   font-family: var(--heading-font);
 }
+
+#founder p {
+  color: #2d2dea; 
+}
+
+#founder p strong {
+  color: #ff7800; 
+}
+
+#about .about-description strong{
+  color: #ff7800 !important; 
+}
+
+/*careers*/
+
+  #careers .card {
+    border-radius: 20px !important; 
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+ 
+  #careers .card:hover,
+  #careers .card:active {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
+
+/*reviews*/
+
+  .review-card {
+    border-radius: 20px;         
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card {
+    border-radius: 20px !important; 
+    overflow: hidden;               
+  }
+
+  .review-card:hover,
+  .review-card:active {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    z-index: 2;
+  }
 
 /* PHP Email Form Messages
 ------------------------------*/
@@ -3066,6 +3139,21 @@ section,
   background-color: color-mix(in srgb, var(--accent-color), var(--contrast-color) 20%);
 }
 
+/* FIX: Make text inside the blue Contact Info box visible */
+.contact .info-item .content h4,
+.contact .info-item .content p {
+  color: var(--contrast-color) !important;
+}
+
+/* FINAL FIX — Force text to show inside Contact Info box */
+.contact .info-box,
+.contact .info-box h3,
+.contact .info-item .content h4,
+.contact .info-item .content p,
+.contact .info-box p {
+  color: #fff !important;
+}
+
 /*--------------------------------------------------------------
 # Portfolio Details Section
 --------------------------------------------------------------*/
@@ -4194,30 +4282,48 @@ section,
       bottom: 0;
       left: 0;
       width: 100%;
+      padding: 4px 0;
+      height: 60px;
       /* background-color: #000; */
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(8, 1fr); /* 8 equal columns */
       justify-content: space-between;
       align-items: center;
+      position: fixed;
+      overflow-x: hidden;
+      white-space: nowrap;
       /* box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.3); */
       z-index: 9999;
-      overflow: hidden;
+      /* overflow: hidden; */
       /* From https://css.glass */
-background: rgba(49, 0, 255, 0.35);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(6.8px);
--webkit-backdrop-filter: blur(6.8px);
-border: 1px solid rgba(49, 0, 255, 0.3);
+      background: rgba(49, 0, 255, 0.35);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(6.8px);
+      -webkit-backdrop-filter: blur(6.8px);
+      border: 1px solid rgba(49, 0, 255, 0.3);
+      border-radius: 0 !important;
     }
 
-    .nav-item {
+    .bottom-nav .indicator {
+       position: absolute;
+       bottom: 0;
+       height: 4px;
+       background: blue;
+       width: calc(100% / 8); /* EXACT width of 1 column */
+       left: 0;
+       transition: left 0.30s ease;
+      }
+    /*.nav-item {
       flex-grow: 1;
       text-align: center;
-      padding: 10px 0;
+      position: relative;
+      padding: 6px 0;
       color: #0003a8;
       font-size: 12px;
       transition: color 0.5s ease;
-    }
+      border-bottom: none !important;
+    } */
 
     .nav-item i {
       font-size: 20px;
@@ -4228,6 +4334,7 @@ border: 1px solid rgba(49, 0, 255, 0.3);
 
     .nav-item.active {
       color:blue ;
+      border-bottom: none !important;
     }
 
     .nav-item.settings {
@@ -4240,12 +4347,13 @@ border: 1px solid rgba(49, 0, 255, 0.3);
     .indicator {
       position: absolute;
       bottom: 0;
-      height: 10px;
-      border-radius:10px;
+      height: 3px;
+      border-radius:3px;
       background: blue;
-      width: 20%;
+      width:  calc(100% / 8);
       left: 0;
-      transition: left 2s ease;
+      transition: transform 0.3s ease;
+      z-index: 10;
        /* box-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 15px rgba(255, 255, 255, 0.5); */
            box-shadow: 0 0 8px rgb(0 31 255 / 80%), 0 0 15px rgb(0 78 255 / 50%);
 }
@@ -4262,6 +4370,8 @@ border: 1px solid rgba(49, 0, 255, 0.3);
     @media (min-width: 992px) {
       .bottom-nav {
         display: none;
+        position: fixed;
+        border-radius: 0 !important;
       }
     }
 
@@ -4274,6 +4384,35 @@ border: 1px solid rgba(49, 0, 255, 0.3);
 .call-btn:hover {
   transform: scale(1.1);
   text-decoration: none;
+}
+
+.navmenu {
+  position: relative;
+}
+
+.nav-indicator {
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  background: #2d2dea;
+  transition: 0.3s ease;
+}
+
+.bottom-nav .nav-item {
+  flex: 1 !important;
+  min-width: 0;   
+  text-align: center;
+  padding: 8px 0;
+  color: #0003a8;
+  font-size: 12px;
+}
+
+/* Reduce icon + text size to reduce height */
+.bottom-nav .nav-item i {
+  font-size: 18px;
+}
+.bottom-nav .nav-item span {
+  font-size: 10px;
 }
 
 @keyframes pulse-blue {
