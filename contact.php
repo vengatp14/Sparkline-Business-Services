@@ -7,8 +7,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $subject = htmlspecialchars(trim($_POST['subject']));
     $message = htmlspecialchars(trim($_POST['message']));
 
-    // Email settings
-    $to = "xx@gmail.com"; 
+    // Select email based on subject
+    if ($subject == "Business") {
+        $to = "info@sparklinebs.in"; 
+    } elseif ($subject == "Careers") {
+        $to = "careers@sparklinebs.in";
+    } else {
+        echo "error";
+        exit;
+    }
+
+    // Email subject line
     $email_subject = "New Contact Form Message: " . $subject;
 
     // Message body
