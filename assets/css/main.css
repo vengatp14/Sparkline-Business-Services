@@ -62,8 +62,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 /* logo */
 .header .logo img {
-    height: 55px !important;
-    max-height: 55px !important;
+    height: 100px !important;
+    max-height: 100px !important;
     width: auto !important;
 }
 .services-img {
@@ -154,6 +154,19 @@ h6 {
     z-index: 2;
   }
 
+#hero .hero-content p,
+#careers .careers-cta__text {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+#about .about-description,
+#about .mission-section {
+  text-align: justify;
+}
+
+.service-grid { justify-content: center; }
+
 /* PHP Email Form Messages
 ------------------------------*/
 .php-email-form .error-message {
@@ -210,30 +223,56 @@ h6 {
 # Global Header
 --------------------------------------------------------------*/
 .header {
-  /* --background-color: #0f0000;
-  --default-color: #ffffff;
-  --heading-color: #ffffff;
-  color: var(--default-color);
-  background-color: var(--background-color); */
-  /* From https://css.glass */
 background: rgba(49, 0, 255, 0.35);
-border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(6.8px);
 -webkit-backdrop-filter: blur(6.8px);
-border: 1px solid rgba(49, 0, 255, 0.3);
+border: 1px solid rgba(49, 0, 255, 0.35);
   padding: 15px 0;
   transition: all 0.5s;
   z-index: 997;
 }
 
+/* Logo container — vertically center text to image */
+.header .logo {
+  display: flex;
+  align-items: center;  
+  gap: 10px;
+}
+
+/* Text block — remove any extra spacing pushing it off-center */
+.header .logo .logo-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  line-height: 1.2;
+}
+
+/* Main site name */
+.header .logo .sitename {
+  font-size: 20px !important;
+  margin: 0;
+  padding: 0;
+  line-height: 1.25;
+}
+
+/* ISO subtitle */
+.header .logo .logo-subtitle {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.55px;
+  margin: 2px 0 0 20px;  
+  padding: 0;
+  text-transform: uppercase;
+}
+
 .header .logo {
   line-height: 1;
+  transform: translateX(-76px);
 }
 
 .header .logo img {
   max-height: 36px;
-  margin-right: 8px;
 }
 
 .header .logo h1 {
@@ -288,25 +327,21 @@ border: 1px solid rgba(49, 0, 255, 0.3);
 }
 
 .scrolled .header {
-/* From https://css.glass */
 background: rgba(49, 0, 255, 0.35);
-border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(6.8px);
 -webkit-backdrop-filter: blur(6.8px);
-border: 1px solid rgba(49, 0, 255, 0.3);
+border: 1px solid rgba(49, 0, 255, 0.35);
 }
 
 /* Global Header on Scroll
 ------------------------------*/
 .scrolled .header {
- /* From https://css.glass */
 background: rgba(49, 0, 255, 0.35);
-border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(6.8px);
 -webkit-backdrop-filter: blur(6.8px);
-border: 1px solid rgba(49, 0, 255, 0.3);
+border: 1px solid rgba(49, 0, 255, 0.35);
 }
 
 /*--------------------------------------------------------------
@@ -4301,7 +4336,7 @@ section,
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
       backdrop-filter: blur(6.8px);
       -webkit-backdrop-filter: blur(6.8px);
-      border: 1px solid rgba(49, 0, 255, 0.3);
+      border: 1px solid rgba(49, 0, 255, 0.35);
       border-radius: 0 !important;
     }
 
@@ -4425,4 +4460,253 @@ section,
   100% {
     box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
   }
+}
+
+/* ══════════════════════════════════════════
+   CAREERS CTA SECTION
+══════════════════════════════════════════ */
+.careers-cta {
+  background-color: var(--background-color);
+  padding-block: 80px;
+}
+
+.careers-cta__card {
+  background: linear-gradient(135deg, #18444c 0%, #1a6dbe 100%);
+  border-radius: 20px;
+  padding: 64px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 48px rgba(24, 68, 76, 0.18);
+}
+
+/* Decorative background circle */
+.careers-cta__card::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+}
+
+.careers-cta__card::after {
+  content: "";
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(255, 120, 0, 0.08);
+  pointer-events: none;
+}
+
+/* Icon */
+.careers-cta__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.careers-cta__icon i {
+  font-size: 2rem;
+  color: #ff7800;
+}
+
+/* Title */
+.careers-cta__title {
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+  letter-spacing: -0.02em;
+}
+
+/* Description */
+.careers-cta__text {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 520px;
+  margin-inline: auto;
+  margin-bottom: 36px;
+  line-height: 1.75;
+  position: relative;
+  z-index: 1;
+}
+
+/* CTA Button */
+.careers-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #ff7800;
+  color: #ffffff !important;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 15px 36px;
+  border-radius: 10px;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  position: relative;
+  z-index: 1;
+  transition: background-color 0.22s ease, transform 0.18s ease,
+              box-shadow 0.22s ease;
+  box-shadow: 0 6px 24px rgba(255, 120, 0, 0.35);
+}
+
+.careers-cta__btn:hover,
+.careers-cta__btn:focus-visible {
+  background-color: #ffffff;
+  color: #ff7800 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(255, 120, 0, 0.25);
+}
+
+.careers-cta__btn:active {
+  transform: translateY(0);
+}
+
+.careers-cta__btn i {
+  font-size: 1.1rem;
+}
+
+/* Supporting note */
+.careers-cta__note {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 18px;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.careers-cta__note i {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.875rem;
+}
+
+/* ── MOBILE ── */
+@media (max-width: 767.98px) {
+  .careers-cta {
+    padding-block: 56px;
+  }
+
+  .careers-cta__card {
+    padding: 48px 24px;
+  }
+
+  .careers-cta__btn {
+    font-size: 0.9rem;
+    padding: 13px 28px;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .careers-cta__card {
+    padding: 40px 18px;
+    border-radius: 14px;
+  }
+
+  .careers-cta__icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .careers-cta__icon i {
+    font-size: 1.6rem;
+  }
+}
+
+.text-f,
+.text-f2{
+  text-align: justify;
+  text-justify: inter-word;
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .text-f,
+  .text-f2{
+    text-align: justify;
+    line-height: 1.8;
+    font-size: 14px;
+  }
+}
+
+
+/* Mobile Fix */
+@media (max-width: 768px) {
+
+  .header .logo {
+    transform: translateX(0);
+    gap: 6px;
+    justify-content: center;
+  }
+
+  .header .logo img {
+    height: 80px !important;
+    max-height: 80px !important;
+  }
+
+  .header .logo .sitename {
+    font-size: 14px !important;
+    line-height: 1.2;
+  }
+
+  .header .logo .logo-subtitle {
+    font-size: 7px;
+    letter-spacing: 0.3px;
+  }
+
+}
+
+@media (max-width:768px){
+
+  .header{
+    flex-direction: column;
+    align-items: center;
+  }
+
+}
+
+@media (max-width:768px){
+
+  .call-btn{
+    position: absolute;
+    right: 10px;
+    top: 60px;
+    height: 30px;
+  }
+
+}
+
+@media (max-width:768px){
+
+  .btn-getstarted.call-btn{
+    position: absolute;
+    right: 10px;
+    top: 60px;
+    height: 30px;
+    font-size: 11px !important;
+  }
+
 }
